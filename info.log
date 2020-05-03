@@ -1,0 +1,17 @@
+{"message":"Unauthorized request to path: /","level":"error"}
+{"message":"bookmark with id [object Object] not found","level":"error"}
+{"message":"bookmark with id [object Object] not found","level":"error"}
+{"message":"bookmark with id [object Object] not found","level":"error"}
+{"message":"bookmark with id [object Object] not found","level":"error"}
+{"message":"bookmark with id [object Object] not found","level":"error"}
+{"message":"bookmark with id [object Object] not found","level":"error"}
+{"message":"card with id 2c1165de-b99d-4f79-b572-b13cf479f21d created","level":"info"}
+{"message":"card with id 014bb406-b0df-4f12-8ca8-5aff0016963e created","level":"info"}
+{"message":"sorry, rating must be a number","level":"error"}
+{"message":"card with id ec1cd128-cac4-479e-99f6-1d5333a82e34 created","level":"info"}
+{"message":"card with id ec1cd128-cac4-479e-99f6-1d5333a82e34 not found","level":"error"}
+{"message":"card with id ec1cd128-cac4-479e-99f6-1d5333a82e34 not found","level":"error"}
+{"message":"bookmark with id [object Object] not found","level":"error"}
+{"message":"card with id cjozyzcil0000lxygs3gyg2mr not found","level":"error"}
+{"message":"card with id cjozyzcil0000lxygs3gyg2mr not found","level":"error"}
+{"message":"bookmark with id cjozyzcil0000lxygs3gyg2mr deleted.","level":"info"}
