@@ -33,13 +33,6 @@ bookRouter
             return res
                 .status(400) 
                 .send('invalid data')
-        } 
-
-        if (!Number.isInteger(rating)) {
-            logger.error('sorry, rating must be a number')
-            return res
-                .status(400)
-                .send('invalid data')
         }
 
         if (!title) {
