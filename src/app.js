@@ -8,7 +8,7 @@ const {
     API_TOKEN
 } = require('./config');
 const winston = require('winston');
-const bookmarkRouter = require('./bookmarks/bookmark-router')
+// const bookmarkRouter = require('./bookmarks/bookmark-router')
 
 const app = express();
 
@@ -53,7 +53,7 @@ app.use(function validateBearerToken(req, res, next) {
     next()
 })
 
-app.use(bookmarkRouter);
+// app.use(bookmarkRouter);
 
 app.get('/', (req, res) => {
     res.send('Hello, world!')
