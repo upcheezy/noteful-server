@@ -8,7 +8,7 @@ const {
     API_TOKEN
 } = require('./config');
 const winston = require('winston');
-// const bookmarkRouter = require('./bookmarks/bookmark-router')
+const notesRouter = require('../note/note-router')
 
 const app = express();
 
@@ -29,6 +29,7 @@ const logger = winston.createLogger({
 app.use(morgan(morganOption))
 app.use(helmet())
 app.use(cors())
+app.use('/notes', notesRouter)
 
 app.use(function errorHandler(error, req, res, next) {
     response = {
