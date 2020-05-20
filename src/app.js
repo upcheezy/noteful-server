@@ -9,6 +9,7 @@ const {
 } = require('./config');
 const winston = require('winston');
 const notesRouter = require('../note/note-router')
+const foldersRouter = require('../folder/folder-router')
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use(morgan(morganOption))
 app.use(helmet())
 app.use(cors())
 app.use('/notes', notesRouter)
+app.use('/folders', foldersRouter)
 
 app.use(function errorHandler(error, req, res, next) {
     response = {

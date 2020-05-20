@@ -7,8 +7,8 @@ const jsonParser = express.json()
 
 const serializeNote = note => ({
   id: note.id,
-  note_name: xss(note.name),
-  note_content: xss(note.content),
+  note_name: xss(note.note_name),
+  note_content: xss(note.note_content),
   date_created: note.date_created,
   folder_id: note.folder_id,
 })
@@ -60,39 +60,38 @@ notesRouter
       .catch(next)
   })
 
-// articlesRouter
-//   .route('/:article_id')
-//   .get((req, res, next) => {
-//     const knexInstance = req.app.get('db')
-//     ArticlesService.getById(knexInstance, req.params.article_id)
-//       .then(article => {
-//         if (!article) {
-//           return res.status(404).json({
-//             error: {
-//               message: `Article doesn't exist`
-//             }
-//           })
-//         }
-//         res.json({
-//           id: article.id,
-//           style: article.style,
-//           title: xss(article.title),
-//           content: xss(article.content),
-//           date_published: article.date_published,
-//           author: article.author
-//         })
-//       })
-//       .catch(next)
-//   })
-//   .delete((req, res, next) => {
-//     ArticlesService.deleteArticle(
-//         req.app.get('db'),
-//         req.params.article_id
-//       )
-//       .then(() => {
-//         res.status(204).end()
-//       })
-//       .catch(next)
-//   })
+notesRouter
+  .route('/:note_id')
+  .get((req, res, next) => {
+    const knexInstance = req.app.get('db')
+    NotesService.getById(knexInstance, req.params.note_id)
+      .then(note => {
+        if (!note) {
+          return res.status(404).json({
+            error: {
+              message: `Note doesn't exist`
+            }
+          })
+        }
+        res.json({
+          id: note.id,
+          note_name: xss(note.note_name),
+          note_content: xss(note.note_content),
+          date_created: note.date_created,
+          folder_id: note.folder_id
+        })
+      })
+      .catch(next)
+  })
+  .delete((req, res, next) => {
+    NotesService.deleteNote(
+        req.app.get('db'),
+        req.params.note_id
+      )
+      .then(() => {
+        res.status(204).end()
+      })
+      .catch(next)
+  })
 
 module.exports = notesRouter

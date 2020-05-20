@@ -17,14 +17,14 @@ const NotesService = {
             .select('*')
             .where('id', id).first()
     },
-    deleteArticle(knex, id) {
+    deleteNote(knex, id) {
         return knex('notes')
             .where({
                 id
             })
             .delete()
     },
-    updateArticle(knex, id, newNoteFields) {
+    updateNote(knex, id, newNoteFields) {
         return knex('notes')
             .where({
                 id
