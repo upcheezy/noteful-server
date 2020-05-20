@@ -8,7 +8,7 @@ const jsonParser = express.json()
 const serializeNote = note => ({
   id: note.id,
   note_name: xss(note.name),
-  content: xss(note.content),
+  note_content: xss(note.content),
   date_created: note.date_created,
   folder_id: note.folder_id,
 })
@@ -25,43 +25,40 @@ notesRouter
       })
       .catch(next)
   })
-//   .post(jsonParser, (req, res, next) => {
-//     const {
-//       title,
-//       content,
-//       style,
-//       author
-//     } = req.body
-//     const newArticle = {
-//       title,
-//       content,
-//       style
-//     }
+  .post(jsonParser, (req, res, next) => {
+    const {
+      note_name,
+      note_content,
+      folder_id
+    } = req.body
+    const newNote = {
+      note_name,
+      note_content,
+      folder_id
+    }
 
-//     for (const [key, value] of Object.entries(newArticle)) {
-//       if (value == null) {
-//         return res.status(400).json({
-//           error: {
-//             message: `Missing '${key}' in request body`
-//           }
-//         })
-//       }
-//     }
-
-//     newArticle.author = author
+    for (const [key, value] of Object.entries(newNote)) {
+      if (value == null) {
+        return res.status(400).json({
+          error: {
+            message: `Missing '${key}' in request body`
+          }
+        })
+      }
+    }
     
-//     ArticlesService.insertArticle(
-//         req.app.get('db'),
-//         newArticle
-//       )
-//       .then(article => {
-//         res
-//           .status(201)
-//           .location(`/articles/${article.id}`)
-//           .json(serializeArticle(article))
-//       })
-//       .catch(next)
-//   })
+    NotesService.insertNote(
+        req.app.get('db'),
+        newNote
+      )
+      .then(note => {
+        res
+          .status(201)
+          .location(`/notes/${note.id}`)
+          .json(serializeNote(note))
+      })
+      .catch(next)
+  })
 
 // articlesRouter
 //   .route('/:article_id')
