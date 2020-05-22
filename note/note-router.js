@@ -93,5 +93,37 @@ notesRouter
       })
       .catch(next)
   })
+  .patch(jsonParser, (req, res, next) => {
+    const {
+        note_name,
+        note_content,
+        folder_id
+    } = req.body;
+    const noteToUpdate = {
+        note_name,
+        note_content,
+        folder_id
+    };
+
+    const numberOfValues = Object.values(noteToUpdate).filter(Boolean).length;
+
+    if (numberOfValues === 0)
+      return res.status(400).json({
+        error: {
+          message: `Request body must content either 'title', 'style', or 'content'`
+        }
+      })
+
+    NotesService.updateNote(
+        req.app.get('db'),
+        // console.log(req.params),
+        req.params.note_id,
+        noteToUpdate
+      )
+      .then(numRowsAffected => {
+        res.status(204).end()
+      })
+      .catch(next)
+  })
 
 module.exports = notesRouter
