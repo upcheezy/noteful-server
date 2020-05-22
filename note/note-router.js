@@ -16,7 +16,6 @@ const serializeNote = note => ({
 notesRouter
   .route('/')
   .get((req, res, next) => {
-    // console.log(res)
     NotesService.getAllNotes(
         req.app.get('db')
       )
@@ -116,7 +115,6 @@ notesRouter
 
     NotesService.updateNote(
         req.app.get('db'),
-        // console.log(req.params),
         req.params.note_id,
         noteToUpdate
       )

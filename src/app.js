@@ -17,6 +17,8 @@ const morganOption = (NODE_ENV === 'production') ?
     'tiny' :
     'common';
 
+// console.log(process.env.NOTEFUL_SERVER_API_KEY)
+
 const logger = winston.createLogger({
     level: 'info',
     format: winston.format.json(),
@@ -44,7 +46,6 @@ app.use(function errorHandler(error, req, res, next) {
 app.use(function validateBearerToken(req, res, next) {
     const apiToken = API_TOKEN;
     const authToken = req.get('Authorization')
-    // console.log(authToken);
 
     if (!authToken || authToken.split(' ')[1] !== apiToken) {
         logger.error(`Unauthorized request to path: ${req.path}`);

@@ -14,7 +14,6 @@ const serializeFolder = folder => ({
 folderRouter
     .route('/')
     .get((req, res, next) => {
-        // console.log(res)
         FoldersService.getAllFolders(
                 req.app.get('db')
             )
